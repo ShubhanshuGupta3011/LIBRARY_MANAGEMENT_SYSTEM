@@ -1,6 +1,11 @@
+import { useState } from "react"
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 export default function Issue() {
+  const navigate = useNavigate();
+  const [bookId,setBookId] = useState('');
+  const [studentId,setStudentId] = useState('');
   const IssuebookHandle = () => {
     /*
     Api call 
@@ -9,6 +14,28 @@ export default function Issue() {
     else both are valid just assign book to this user
     display book issued
     */ 
+    if(!studentId.includes("INT")){
+      alert("Wrong student ID");
+      navigate("/Issue");
+      return ;
+    }
+    if(!bookId.includes("BOOK")){
+      alert("Wrong Book ID");
+      navigate("/Issue");
+      return ;
+    }
+    else{
+      alert("Book Issued Succesfully !")
+      navigate("/Dash");
+      return ;
+    }
+
+  }
+  const checkbook = (event) =>{
+    setBookId(event.target.value);
+  }
+  const checkstudent = (event) =>{
+    setStudentId(event.target.value);
   }
 
   return (
@@ -37,7 +64,7 @@ export default function Issue() {
 
          <div style={{margin:'1vh'}}>
          <label style={{marginRight:'2vw'}}> Enter_Unique_id </label>
-         <input type='text' style={{
+         <input type='text' onChange={checkstudent} style={{
             outline:'none',
             fontSize:'0.8rem',
             color: 'black',
@@ -48,7 +75,7 @@ export default function Issue() {
 
          <div style={{margin:'1vh'}}>
           <label style={{marginRight:'2vw'}}> Enter_Book_id </label>
-          <input type='text' style={{
+          <input type='text' onChange={checkbook} style={{
             outline:'none',
             fontSize:'0.8rem',
             color: 'black',

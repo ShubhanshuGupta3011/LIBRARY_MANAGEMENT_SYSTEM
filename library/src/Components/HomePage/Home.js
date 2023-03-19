@@ -1,8 +1,7 @@
 import React from 'react'
 import NavBar from '../Welcome'
 
-export default function 
-() {
+export default function () {
   return (
     <>
     <NavBar/>

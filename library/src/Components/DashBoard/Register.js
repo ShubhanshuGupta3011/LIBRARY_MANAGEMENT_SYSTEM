@@ -34,7 +34,9 @@ export default function Register() {
         /*
         Api call to generate unique_Id for this student
         suppose already register then display Registion_Already_Done
+        post man code over here 
         */ 
+        
         alert("User_Register_Successfully");
         navigate("/Dash");
     }

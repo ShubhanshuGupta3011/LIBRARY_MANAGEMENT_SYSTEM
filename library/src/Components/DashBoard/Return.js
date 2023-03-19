@@ -1,10 +1,38 @@
 import React from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Return() {
+  
+  const navigate = useNavigate();
+  const [bookId,setBookId] = useState('');
+  const [studentId,setStudentId] = useState('');
   const ReturnbookHandler = () => {
     /*
     if both field are valid just earse the data from issue table and update the count of book
     */ 
+    if(!studentId.includes("INT")){
+      alert("Wrong student ID");
+      navigate("/Return");
+      return ;
+    }
+    if(!bookId.includes("BOOK")){
+      alert("Wrong Book ID");
+      navigate("/Return");
+      return ;
+    }
+    else{
+      alert("Book Return Succesfully !")
+      navigate("/Dash");
+      return ;
+    }
+  }
+
+  const checkbook = (event) =>{
+    setBookId(event.target.value);
+  }
+  const checkstudent = (event) =>{
+    setStudentId(event.target.value);
   }
 
   return (
@@ -33,7 +61,7 @@ export default function Return() {
 
          <div style={{margin:'1vh'}}>
          <label style={{marginRight:'2vw'}}> Enter_Unique_id </label>
-         <input type='text' style={{
+         <input type='text' onChange={checkstudent} style={{
             outline:'none',
             fontSize:'0.8rem',
             color: 'black',
@@ -44,7 +72,7 @@ export default function Return() {
 
          <div style={{margin:'1vh'}}>
           <label style={{marginRight:'2vw'}}> Enter_Book_id </label>
-          <input type='text' style={{
+          <input type='text' onChange={checkbook} style={{
             outline:'none',
             fontSize:'0.8rem',
             color: 'black',
